@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx
+  # replica set labels
+  labels:
+    purpose: RS-demo
+    project: projectk
+    app: nginx
+  spec: 
+    replicas: 3
+    # these are the labels replicas set use to create pod replicas, this should match pod labels
+    selectors:
+      matchLabels:
+        purpose: RS-demo
+        project: projectk
+        app: nginx
+
+      # This sis pod defination
+    template:
+    metadata:
+      labels:
+        purpose: Rs-demo
+        project: projectk
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+    
